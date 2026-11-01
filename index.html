@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¡Feliz Cumpleaños Love! 🐼</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Canvas Confetti -->
+    <!-- <script src="https://cdn.jsdelivr.com/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.4/confetti.min.js"></script>
+    <!-- Google Fonts: Poppins & Fira Code & Montserrat (Lucha Libre style) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Montserrat:ital,wght@0,800;0,900;1,800&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              peach: {
+                50: "#fff7ed",
+                100: "#ffedd5",
+                300: "#fdba74",
+                400: "#fb923c",
+                500: "#f97316",
+              },
+              rose: {
+                50: "#fff1f2",
+                100: "#ffe4e6",
+                200: "#fecdd3",
+                400: "#fb7185",
+                500: "#f43f5e",
+              },
+            },
+            fontFamily: {
+              sans: ["Poppins", "sans-serif"],
+              mono: ["Fira Code", "monospace"],
+              lucha: ["Montserrat", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-12px) rotate(1deg);
+        }
+      }
+      .animate-float {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes drive {
+        0% {
+          transform: translateX(-120%);
+        }
+        100% {
+          transform: translateX(120vw);
+        }
+      }
+      .animate-vocho {
+        animation: drive 14s linear infinite;
+      }
+
+      /* Glassmorphism */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+
+      /* Polaroid Hover */
+      .polaroid {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .polaroid:hover {
+        transform: scale(1.05) rotate(0deg) !important;
+        z-index: 20;
+        box-shadow:
+          0 20px 25px -5px rgba(244, 63, 94, 0.25),
+          0 10px 10px -5px rgba(244, 63, 94, 0.1);
+      }
+
+      /* Terminal styling */
+      .terminal-shadow {
+        box-shadow: 0 15px 35px rgba(244, 63, 94, 0.15);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gradient-to-br from-rose-100 via-peach-50 to-rose-200 min-h-screen text-gray-800 font-sans relative overflow-x-hidden"
+  >
+    <!-- VOCHITO ANIMADO FLOTANDO / CRUZANDO LA PANTALLA -->
+    <div
+      class="fixed bottom-3 left-0 z-40 pointer-events-none w-full h-24 overflow-hidden"
+    >
+      <div class="animate-vocho absolute bottom-0 flex items-center gap-2">
+        <!-- Icono/SVG de Vocho Vintage con Globos -->
+        <div class="relative flex flex-col items-center">
+          <!-- Globos amarrados al vocho -->
+          <div class="flex gap-1 -mb-2">
+            <div
+              class="w-4 h-5 bg-rose-400 rounded-full animate-bounce"
+              style="animation-delay: 0.1s"
+            ></div>
+            <div
+              class="w-4 h-5 bg-peach-400 rounded-full animate-bounce"
+              style="animation-delay: 0.3s"
+            ></div>
+            <div
+              class="w-4 h-5 bg-rose-300 rounded-full animate-bounce"
+              style="animation-delay: 0.2s"
+            ></div>
+          </div>
+          <!-- SVG de Vocho / VW Beetle -->
+          <svg
+            width="90"
+            height="45"
+            viewBox="0 0 120 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="drop-shadow-lg"
+          >
+            <!-- Cuerpo del Bocho -->
+            <path
+              d="M10 40 C10 35, 15 30, 25 28 C35 15, 55 8, 80 12 C95 15, 105 28, 112 35 C116 37, 118 42, 115 45 C110 47, 10 47, 10 40 Z"
+              fill="#fb7185"
+            />
+            <!-- Techo curvo bocho -->
+            <path
+              d="M30 26 C40 12, 65 8, 82 15 C88 20, 93 26, 95 26 Z"
+              fill="#ffe4e6"
+            />
+            <!-- Ventana trasera -->
+            <path
+              d="M35 24 C42 16, 55 14, 58 24 Z"
+              fill="#93c5fd"
+              opacity="0.8"
+            />
+            <!-- Ventana delantera -->
+            <path
+              d="M62 24 C67 14, 78 15, 85 24 Z"
+              fill="#93c5fd"
+              opacity="0.8"
+            />
+            <!-- Faros -->
+            <circle cx="111" cy="37" r="4" fill="#fef08a" />
+            <!-- Defensa Vintage -->
+            <rect x="5" y="42" width="10" height="5" rx="2" fill="#d1d5db" />
+            <rect x="108" y="42" width="10" height="5" rx="2" fill="#d1d5db" />
+            <!-- Ruedas -->
+            <circle cx="30" cy="45" r="10" fill="#374151" />
+            <circle cx="30" cy="45" r="5" fill="#e5e7eb" />
+            <circle cx="90" cy="45" r="10" fill="#374151" />
+            <circle cx="90" cy="45" r="5" fill="#e5e7eb" />
+          </svg>
+        </div>
+        <span
+          class="bg-white/90 backdrop-blur text-xs font-semibold px-2 py-1 rounded-full text-rose-500 shadow border border-rose-200"
+        >
+          ¡Beep Beep Lili! 🚗💨
+        </span>
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="max-w-4xl mx-auto pt-12 pb-6 px-4 text-center relative">
+      <div
+        class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-rose-500 font-medium text-sm shadow-sm mb-4 border border-rose-200"
+      >
+        <i class="fa-solid fa-code text-peach-500"></i> Compiled with Love by
+        José Luis 🐝
+        <span
+          class="inline-block w-2 h-2 rounded-full bg-green-400 animate-pulse"
+        ></span>
+      </div>
+
+      <h1
+        class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-peach-500 to-rose-600 mb-3 tracking-tight"
+      >
+        ¡Feliz Cumpleaños Amor! 🎂🎉🐼
+      </h1>
+      <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto font-light">
+        Un sitio especial para la persona mas especial que tengo, byte por byte,
+        para celebrar un año más de tu increíble existencia.
+      </p>
+
+      <!-- Botones de Acción Rápida -->
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <button
+          onclick="toggleAudio()"
+          id="audioBtn"
+          class="bg-white hover:bg-rose-50 text-rose-500 font-semibold px-5 py-3 rounded-full shadow-md border border-rose-200 transition-all flex items-center gap-2"
+        >
+          <i class="fa-solid fa-music" id="audioIcon"></i>
+          <span id="audioText">Puchale</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-16">
+      <!-- SECCIÓN 2: CARRETE / GALERÍA DE FOTOS (POLAROID STYLE) -->
+      <section class="space-y-6">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-gray-800">Algunas Pictures 📸</h2>
+          <!-- <p class="text-gray-500 text-sm mt-1">Un recorrido por recuerdos inolvidables</p> -->
+        </div>
+
+        <!-- 
+                ===================================================================
+                INSTRUCCIONES PARA TUS FOTOS:
+                Reemplaza la propiedad 'src' de las etiquetas <img> de abajo 
+                con las URLs directas de tus imágenes (Imgur, ImgBB, etc.).
+                ===================================================================
+            -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-4">
+          <!-- Foto 1 -->
+          <div
+            class="polaroid bg-white p-4 rounded-xl shadow-md transform rotate-[-2deg]"
+          >
+            <div class="w-full h-56 overflow-hidden rounded-lg bg-gray-100">
+              <!-- REEMPLAZA AQUÍ TUS FOTOS (FOTO 1) -->
+              <img
+                src="https://lh3.googleusercontent.com/d/1Up8-s4F0yubVOrr2koAhc46SMtYwi1R1"
+                alt="Lili_1"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-center font-handwriting text-gray-700 font-medium text-sm mt-3 font-mono"
+            >
+              Un paparazzi observandote fijatemente ✨
+            </p>
+          </div>
+
+          <!-- Foto 2 -->
+          <div
+            class="polaroid bg-white p-4 rounded-xl shadow-md transform rotate-[2deg]"
+          >
+            <div class="w-full h-56 overflow-hidden rounded-lg bg-gray-100">
+              <!-- REEMPLAZA AQUÍ TUS FOTOS (FOTO 2) -->
+              <img
+                src="https://lh3.googleusercontent.com/d/1xacjMD-HfYNmeeZ1WfO4iUOTfBOyVOqO"
+                alt="Lili2"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-center text-gray-700 font-medium text-sm mt-3 font-mono"
+            >
+              Una imperfecta extraña junto con un imperfecto extraño que se
+              conocian 🐝🍷 <br />
+              (No sabian lo que les esperaba 😝)
+            </p>
+          </div>
+
+          <!-- Foto 3 -->
+          <div
+            class="polaroid bg-white p-4 rounded-xl shadow-md transform rotate-[-3deg]"
+          >
+            <div class="w-full h-56 overflow-hidden rounded-lg bg-gray-100">
+              <!-- REEMPLAZA AQUÍ TUS FOTOS (FOTO 3) -->
+              <img
+                src="https://lh3.googleusercontent.com/d/17dG6fBFFTxwstmFuqPRoc8Bk0JXIwJdG"
+                alt="Lili3"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-center text-gray-700 font-medium text-sm mt-3 font-mono"
+            >
+              Mi rock star favorita ⭐🎸
+            </p>
+          </div>
+
+          <!-- Foto 4 -->
+          <div
+            class="polaroid bg-white p-4 rounded-xl shadow-md transform rotate-[1deg]"
+          >
+            <div class="w-full h-56 overflow-hidden rounded-lg bg-gray-100">
+              <!-- REEMPLAZA AQUÍ TUS FOTOS (FOTO 4) -->
+              <img
+                src="https://lh3.googleusercontent.com/d/1LXtrgHsb1UHG4DPnsvde9BkMEG5hmW9Y"
+                alt="Lili4"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-center text-gray-700 font-medium text-sm mt-3 font-mono"
+            >
+              Un concierto 💎
+            </p>
+          </div>
+
+          <!-- Foto 5 -->
+          <div
+            class="polaroid bg-white p-4 rounded-xl shadow-md transform rotate-[-1deg]"
+          >
+            <div class="w-full h-56 overflow-hidden rounded-lg bg-gray-100">
+              <!-- REEMPLAZA AQUÍ TUS FOTOS (FOTO 5) -->
+              <img
+                src="https://lh3.googleusercontent.com/d/1BDWNw8zos6clvDogDd1vJ1x3sg-4XZeI"
+                alt="Lili5"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-center text-gray-700 font-medium text-sm mt-3 font-mono"
+            >
+              De lejos o de cerca, simpre destacas y me fascinas 🌸
+            </p>
+          </div>
+
+          <!-- Foto 6 -->
+          <div
+            class="polaroid bg-white p-4 rounded-xl shadow-md transform rotate-[3deg]"
+          >
+            <div class="w-full h-56 overflow-hidden rounded-lg bg-gray-100">
+              <!-- REEMPLAZA AQUÍ TUS FOTOS (FOTO 6) -->
+              <img
+                src="https://lh3.googleusercontent.com/d/1S_zBazNiiEEdltEiqYMziQznicXiacTR"
+                alt="Lili6"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-center text-gray-700 font-medium text-sm mt-3 font-mono"
+            >
+              Siempre que vea flores y pandas, se que estas ahi 💐🐼
+            </p>
+          </div>
+          <!-- Foto 6 -->
+          <div
+            class="polaroid bg-white p-4 rounded-xl shadow-md transform rotate-[3deg]"
+          >
+            <div class="w-full h-56 overflow-hidden rounded-lg bg-gray-100">
+              <!-- REEMPLAZA AQUÍ TUS FOTOS (FOTO 6) -->
+              <img
+                src="https://lh3.googleusercontent.com/d/1Lmbal24vHTx9REzn8LOapnW79yHfl6S3"
+                alt="Lili7"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p
+              class="text-center text-gray-700 font-medium text-sm mt-3 font-mono"
+            >
+              Simplemente, la persona que mas amo 😊.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 3: CONSOLA INTERACTIVA DE PROGRAMADOR (GUIÑO PERSONAL 2) -->
+      <section
+        class="glass-card rounded-3xl p-6 md:p-8 shadow-xl border border-white/60"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-rose-400"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+            <span class="text-xs font-mono text-gray-500 ml-2"
+              >birthday_script.js</span
+            >
+          </div>
+          <span
+            class="text-xs font-mono bg-rose-100 text-rose-600 px-2.5 py-1 rounded-full font-semibold"
+          >
+            100% Bug-Free ✨
+          </span>
+        </div>
+
+        <!-- Terminal Code Screen -->
+        <div
+          class="bg-gray-900 rounded-2xl p-5 font-mono text-xs md:text-sm text-gray-200 overflow-x-auto terminal-shadow"
+        >
+          <p class="text-gray-500">
+            // Script de felicitación codificado con dedicación
+          </p>
+          <p>
+            <span class="text-purple-400">const</span>
+            <span class="text-yellow-300">festejada</span> = {
+          </p>
+          <p class="pl-4">
+            <span class="text-rose-400">nombre</span>:
+            <span class="text-green-300">"My Love: Liliana"</span>,
+          </p>
+          <p class="pl-4">
+            <span class="text-rose-400">gustos</span>: [<span
+              class="text-green-300"
+              >"Vochitos 🚗, Vino, Musica, Energias,"</span
+            >, <span class="text-green-300">"Viajes"</span>,
+            <span class="text-green-300">"Ver feo a la gente"</span>],
+          </p>
+          <!-- <p class="pl-4"><span class="text-rose-400">nivelDeAsombro</span>: <span class="text-blue-400">Infinity</span></p> -->
+          <p>};</p>
+          <br />
+          <p>
+            <span class="text-purple-400">function</span>
+            <span class="text-blue-400">evaluarCumpleaños</span>(persona) {
+          </p>
+          <p class="pl-4">
+            <span class="text-purple-400">if</span> (persona.<span
+              class="text-rose-400"
+              >esSuCumple</span
+            >
+            === <span class="text-blue-400">true</span>) {
+          </p>
+          <p class="pl-8 text-peach-300">
+            return
+            <span class="text-green-300"
+              >"¡Que tus metas se sigan cumpliendo, espero estar contigo muchos
+              cumpleaños!"</span
+            >;
+          </p>
+          <p class="pl-4">}</p>
+          <p>}</p>
+          <br />
+          <p class="text-green-400 font-semibold">
+            &gt; ejecutarEvaluacion(festejada);
+          </p>
+          <p
+            class="text-yellow-200 bg-white/5 p-2 rounded mt-2 border-l-2 border-yellow-400"
+          >
+            "STATUS 200 OK: Festejada genial detectada. Enviando toneladas de
+            abrazos..."
+          </p>
+        </div>
+
+        <!-- Botón interactivo de Terminal -->
+        <div class="mt-4 flex justify-end">
+          <button
+            onclick="ejecutarCode()"
+            class="text-xs bg-gray-800 hover:bg-gray-900 text-green-400 font-mono px-4 py-2 rounded-lg transition-all flex items-center gap-2"
+          >
+            <i class="fa-solid fa-play text-xs"></i> Running Debugger...
+          </button>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 4: CARTA / DEDICATORIA PERSONALIZADA -->
+      <section
+        class="glass-card rounded-3xl p-8 md:p-12 shadow-xl border border-white/60 text-center relative overflow-hidden"
+      >
+        <div class="max-w-2xl mx-auto space-y-4">
+          <div
+            class="w-12 h-12 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto text-xl"
+          >
+            💌
+          </div>
+          <h2 class="text-3xl font-bold text-gray-800">
+            Una Dedicatoria Especial
+          </h2>
+          <div
+            class="w-16 h-1 bg-gradient-to-r from-rose-400 to-peach-400 mx-auto rounded-full"
+          ></div>
+
+          <p
+            class="text-gray-700 leading-relaxed text-base md:text-lg italic pt-2"
+          >
+            Si te soy sincero, no sé qué más decirte que no sepas ya sobre lo
+            que pienso de ti: que te quiero, te adoro y te admiro muchísimo, y
+            que eres una de mis personas favoritas en el mundo.<br> Pero me conoces,
+            y claro que tenía que escribirte algo especial. Ha sido un camino
+            raro con todo lo que hemos pasado y, honestamente, no esperaba estar
+            a tu lado el día de hoy para tu cumpleaños.<br> Sin embargo, sin
+            importar nuestra situación, algo dentro de mí no me habría dejado
+            pasar este día sin al menos darte un abrazo y una felicitación.
+            Antes de todo lo que vivimos estas últimas dos semanas, mi plan era
+            solo darte unos chocolates como detalle. Pero hoy estoy aquí
+            nuevamente como tu pareja, tal como el año pasado, y no te imaginas
+            lo feliz que me hace.<br> Este detalle fue improvisado hoy mismo; son
+            las 5:26 p. m. y apenas estoy terminando de escribir esto. Lili,
+            quiero decirte que te admiro enormemente. Aunque a veces no
+            coincidamos en cosas del trabajo, reconozco la pasión y la entrega
+            que le pones a todo lo que haces. No es casualidad que la vida te
+            ponga cosas buenas en el camino; tienes un aura enorme y una
+            capacidad increíble para superar cualquier bache, siempre desde una
+            calma que de verdad admiro y envidio un poco. Llegaste a mi vida el
+            año pasado, justo cuando yo salía de momentos difíciles, y me
+            pintaste todo de color rojo (mi color favorito).<br> Desde ese instante
+            supe que serías alguien que me marcaría para siempre. Me hace muy
+            feliz que estemos juntos de nuevo y me llena el corazón poder
+            celebrar otro cumpleaños a tu lado. Deseo que a tu vida solo llegue
+            lo mejor, y que los retos que se presenten sean solo oportunidades
+            para aprender y seguir floreciendo como siempre lo haces. Mi Lili,
+            feliz cumpleaños. Te amo muchísimo.
+            <br> JOSE LUIS
+          </p>
+
+          <div class="pt-4">
+            <span class="font-bold text-rose-500 text-lg"
+              >Con todo mi amor,</span
+            >
+            <p class="text-sm text-gray-500 font-mono">
+              Tu programador favorito ❤️
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-8 text-gray-500 text-xs font-mono space-y-1">
+      <p>© 2026 Edition | Loviu Lili</p>
+    </footer>
+
+    <!-- MODAL POPUP PARA ACCIONES -->
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl transform transition-all border border-rose-100"
+      >
+        <div id="modalEmoji" class="text-5xl mb-3">🏆</div>
+        <h3 id="modalTitle" class="text-xl font-bold text-gray-800 mb-2">
+          ¡Resultado!
+        </h3>
+        <p id="modalMessage" class="text-sm text-gray-600 mb-6">
+          Mensaje genérico
+        </p>
+        <button
+          onclick="cerrarModal()"
+          class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2.5 rounded-xl transition-all shadow-md shadow-rose-200"
+        >
+          ¡Entendido! 💕
+        </button>
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT DE INTERACTIVIDAD -->
+    <script>
+      // Confeti automático al cargar
+      window.onload = function () {
+        confeti();
+      };
+
+      // Función para lanzar confeti con colores de la paleta (rosa, naranja, blanco)
+      function confeti() {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ["#fb7185", "#fb923c", "#ffffff", "#f43f5e"],
+        });
+      }
+
+      // GUIÑO DE LUCHA LIBRE
+      function aplicarLlaveCumple() {
+        // confeti();
+        mostrarModal(
+          "🥊 ¡VICTORIA POR CUENTA DE 3!",
+          "¡Has ganado el Cinturón de Campeonato Mundial a la Persona Más Especial! 🏆",
+          "👑",
+        );
+      }
+
+      // GUIÑO DE PROGRAMACIÓN
+      function ejecutarCode() {
+        // confeti();
+        mostrarModal(
+          "💻 Code Compiled Successfully!",
+          "Debug result: 0 errors, 0 warnings. Resultado: Eres bien pinchi sexy jaja.",
+          "🚀",
+        );
+      }
+
+      // CONTROL DE MODAL
+      function mostrarModal(titulo, mensaje, emoji) {
+        document.getElementById("modalTitle").innerText = titulo;
+        document.getElementById("modalMessage").innerText = mensaje;
+        document.getElementById("modalEmoji").innerText = emoji;
+        document.getElementById("modal").classList.remove("hidden");
+      }
+
+      function cerrarModal() {
+        document.getElementById("modal").classList.add("hidden");
+      }
+
+      // REPRODUCTOR DE AUDIO SINTETIZADO (Las Mañanitas / Melody)
+      let isPlaying = false;
+      let audioCtx = null;
+
+      function toggleAudio() {
+        const btnText = document.getElementById("audioText");
+        const btnIcon = document.getElementById("audioIcon");
+
+        if (!isPlaying) {
+          playBirthdayMelody();
+          btnText.innerText = "Detener Música";
+          btnIcon.className = "fa-solid fa-stop text-rose-500";
+          isPlaying = true;
+        } else {
+          if (audioCtx) audioCtx.close();
+          btnText.innerText = "Música de Fiesta";
+          btnIcon.className = "fa-solid fa-music";
+          isPlaying = false;
+        }
+      }
+
+      // Melodía simple synthesizada sin depender de archivos mp3 externos
+      function playBirthdayMelody() {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+
+        const notes = [
+          { note: 264, duration: 0.4 }, // Happy
+          { note: 264, duration: 0.4 }, // Birthday
+          { note: 297, duration: 0.8 }, // To
+          { note: 264, duration: 0.8 }, // You
+          { note: 352, duration: 0.8 },
+          { note: 330, duration: 1.2 },
+
+          { note: 264, duration: 0.4 },
+          { note: 264, duration: 0.4 },
+          { note: 297, duration: 0.8 },
+          { note: 264, duration: 0.8 },
+          { note: 396, duration: 0.8 },
+          { note: 352, duration: 1.2 },
+        ];
+
+        let startTime = audioCtx.currentTime;
+
+        notes.forEach((item) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(item.note, startTime);
+
+          gain.gain.setValueAtTime(0.15, startTime);
+          gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            startTime + item.duration - 0.05,
+          );
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(startTime);
+          osc.stop(startTime + item.duration);
+
+          startTime += item.duration;
+        });
+
+        // Reiniciar estado al terminar la melodía
+        setTimeout(
+          () => {
+            if (isPlaying) toggleAudio();
+          },
+          (startTime - audioCtx.currentTime) * 1000,
+        );
+      }
+    </script>
+  </body>
+</html>
